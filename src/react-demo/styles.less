@@ -1,0 +1,30 @@
+.header {
+  border-bottom: 1px solid #ccc;
+  a {
+    padding: 10px;
+    background-color: #ccc;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    position: relative;
+    bottom: -1px
+  }
+  a.current {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    color: #f00;
+  }
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  padding: 10px;
+  .itemName {
+    flex: 1
+  }
+  .itemOperator {
+    width: 100px
+  }
+}

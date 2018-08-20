@@ -1,0 +1,47 @@
+{
+  "name": "react-demo-todo-list",
+  "version": "1.0.0",
+  "description": "react learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node bin/dev-server --env development --mode development",
+    "dev": "webpack-dev-server -d --config webpack\\webpack.config.js --mode development --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felixzxk/react-demo-todo-list.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "zxk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felixzxk/react-demo-todo-list/issues"
+  },
+  "homepage": "https://github.com/felixzxk/react-demo-todo-list#readme",
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
