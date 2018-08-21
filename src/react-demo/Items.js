@@ -1,10 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import styles from './styles.less';
-
-const Btn = props => {
-  return <input type="button" onClick={props.onClick} value={props.title} />;
-};
+import Btn from "./Button";
 
 export default class Items extends React.Component {
   constructor(props) {
@@ -66,16 +63,16 @@ export default class Items extends React.Component {
   };
   render() {
     if (this.list(this.state.data).length < 1) {
-      return <div>暂无数据</div>;
+      return <div className={styles.items}>暂无数据</div>;
     }
     return (
       <div className={styles.items}>
         {this.list(this.state.data)}
         {this.state.current === 'todos' ?
-          <Btn onClick={this.operate.bind(null, 1)} title="完成" /> :
+          <Btn onClick={this.operate.bind(null, 1)} title="完成" color="green" fontColor="white" /> :
           <Btn onClick={this.operate.bind(null, 2)} title="重置" /> 
         }
-        <Btn onClick={this.operate.bind(null, 0)} title="删除" />
+        <Btn onClick={this.operate.bind(null, 0)} title="删除" color="red" fontColor="white"  />
       </div>
     );
   }

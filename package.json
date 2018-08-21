@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "node bin/dev-server --env development --mode development",
-    "dev": "webpack-dev-server -d --config webpack\\webpack.config.js --mode development --color"
+    "dev": "webpack-dev-server -d --config ./webpack/webpack.config.js --mode development --color"
   },
   "repository": {
     "type": "git",

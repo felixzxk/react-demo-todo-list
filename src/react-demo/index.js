@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Items from './Items';
+import Btn from './Button';
+import styles from './styles.less';
 
 const TITLE = [
   {
@@ -12,7 +14,7 @@ const TITLE = [
     name: '已完成任务'
   }
 ];
-String.prototype.Trim = function() {
+String.prototype.Trim = function () {
   return this.replace(/(^\s*)|(\s*$)/g, '');
 };
 
@@ -104,26 +106,18 @@ export default class TodoList extends Component {
           onClick={this.changeTag}
           current={this.state.current}
         />
+        <div className={styles.operate}>
+          <input style={{height: '27px'}} type="text" id="newItemName" placeholder="请输入新任务的名称" />
+          <Btn title="添加任务" onClick={this.addItem} color="#3399ff" fontColor="#fff" />
+          {this.state.todos.length > 0 ? (
+            <Btn title="删除所有任务" onClick={this.clearAll} />
+          ) : null}
+        </div>
         <Items
           data={this.state.todos}
           current={this.state.current}
           operate={this.operate}
         />
-        <input type="text" id="newItemName" placeholder="请输入新任务的名称" />
-        <input
-          type="button"
-          name="add"
-          value="添加任务"
-          onClick={this.addItem}
-        />
-        {this.state.todos.length > 0 ? (
-          <input
-            type="button"
-            name="add"
-            value="删除所有任务"
-            onClick={this.clearAll}
-          />
-        ) : null}
       </div>
     );
   }
