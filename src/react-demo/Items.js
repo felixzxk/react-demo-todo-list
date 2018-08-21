@@ -7,64 +7,75 @@ const Btn = props => {
 };
 
 export default class Items extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: props.current,
+      data: props.data
+    };
+  }
+  componentWillReceiveProps(next) {
+    this.setState({
+      current: next.current,
+      data: next.data
+    });
+  }
   getTargets = type => {
     const all = document.getElementsByName(type);
     const res = [];
     if (all.length > 0) {
       for (let item of all) {
         if (item.checked) {
-          console.log(item);
           res.push(item.value);
         }
       }
     }
     return res;
   };
-  complate = () => {
-    const target = this.getTargets(this.props.current);
+  operate = (type) => {
+    const target = this.getTargets(this.state.current);
     if (target.length > 0) {
-      this.props.complate(target);
+      this.props.operate(target, type);
     }
   };
-  remove = () => {};
-  // filterData = (current, data) => {
-  //   switch(current) {
-  //     case 'todos': {
-  //       return data.filter(d => !d.complated)
-  //     }
-  //     case 'complated': {
-  //       return data.filter(d => d.complated)
-  //     }
-  //   }
-  // }
   filterData = (current, item) => {
     switch (current) {
       case 'todos': {
         return !item.complated;
       }
       case 'complated': {
-        console.log('complated',item)
         return item.complated;
       }
     }
   };
+  list = data => {
+    const res = [];
+    data.map((item, index) => {
+      if (this.filterData(this.state.current, item)) {
+        res.push(
+          <Item
+            key={`${this.state.current}-${index}`}
+            item={item}
+            type={this.state.current}
+            index={index}
+          />
+        );
+      }
+    });
+    return res;
+  };
   render() {
-    console.log('this.props.current', this.props.current)
+    if (this.list(this.state.data).length < 1) {
+      return <div>暂无数据</div>;
+    }
     return (
       <div className={styles.items}>
-        {this.props.data.map(
-          (item, index) =>
-            this.filterData(this.props.current, item) && (
-              <Item
-                key={`${this.props.current}-${index}`}
-                item={item}
-                type={this.props.current}
-                index={index}
-              />
-            )
-        )}
-        <Btn onClick={this.complate} title="完成" />
-        <Btn onClick={this.remove} title="删除" />
+        {this.list(this.state.data)}
+        {this.state.current === 'todos' ?
+          <Btn onClick={this.operate.bind(null, 1)} title="完成" /> :
+          <Btn onClick={this.operate.bind(null, 2)} title="重置" /> 
+        }
+        <Btn onClick={this.operate.bind(null, 0)} title="删除" />
       </div>
     );
   }

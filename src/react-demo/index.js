@@ -11,7 +11,7 @@ const TITLE = [
   {
     code: 'complated',
     name: '已完成任务'
-  },
+  }
 ];
 String.prototype.Trim = function() {
   return this.replace(/(^\s*)|(\s*$)/g, '');
@@ -42,7 +42,7 @@ export default class TodoList extends Component {
     const target = document.getElementById('newItemName');
     if (target.value.Trim()) {
       const { todos } = this.state;
-      todos.unshift({
+      todos.push({
         name: target.value,
         complated: false
       });
@@ -54,16 +54,49 @@ export default class TodoList extends Component {
           target.value = '';
         }
       );
+    } else {
+      alert('输入内容不能全是空格！')
+      target.value = '';
     }
   };
-  onComplate = (items) => {
+  operate = (items, type) => {
+    switch (type) {
+      case 1:
+        this.complate(items, true);
+        break;
+      case 2:
+        this.complate(items, false);
+        break;
+      case 0:
+        this.remove(items);
+        break;
+    }
+  };
+  clearAll = () => {
+    const res = confirm('是否删除所有任务？');
+    if (res) {
+      this.setState({
+        todos: []
+      });
+    }
+  };
+  complate = (items, status) => {
     const todos = this.state.todos;
     items.map(index => {
-      todos[index].complated = true
-    })
+      todos[index].complated = status;
+    });
     this.setState({
       todos: [...todos]
-    })
+    });
+  };
+  remove = items => {
+    const todos = this.state.todos;
+    items.map(index => {
+      todos.splice(index, 1);
+    });
+    this.setState({
+      todos: [...todos]
+    });
   };
   render() {
     return (
@@ -73,16 +106,11 @@ export default class TodoList extends Component {
           onClick={this.changeTag}
           current={this.state.current}
         />
-        {this.state[this.state.current].length < 1 ? (
-          <div>当前没有 {this.getCategory(this.state.current)}</div>
-        ) : (
-          <Items
-            data={this.state.todos}
-            current={this.state.current}
-            complate={this.onComplate}
-          />
-        )}
-
+        <Items
+          data={this.state.todos}
+          current={this.state.current}
+          operate={this.operate}
+        />
         <input type="text" id="newItemName" placeholder="请输入新任务的名称" />
         <input
           type="button"
@@ -90,6 +118,14 @@ export default class TodoList extends Component {
           value="添加任务"
           onClick={this.addItem}
         />
+        {this.state.todos.length > 0 ? (
+          <input
+            type="button"
+            name="add"
+            value="删除所有任务"
+            onClick={this.clearAll}
+          />
+        ) : null}
       </div>
     );
   }
