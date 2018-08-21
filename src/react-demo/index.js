@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Item from './Item';
 import Items from './Items';
 
 const TITLE = [
@@ -22,7 +21,6 @@ export default class TodoList extends Component {
     super(props);
     this.state = {
       todos: [],
-      complated: [],
       current: 'todos'
     };
   }
