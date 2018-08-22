@@ -6,7 +6,7 @@ export default () => {
       <h1>事件处理</h1>
       <ol style={{ fontSize: '32px', lineHeight: '2em' }}>
         <li>
-          事件名称必须驼峰命名，react内部会根据这种命名规则解析节点的事件监听器，例如：onClick，onFocus
+          事件名称必须(on + eventType)驼峰命名，react内部会根据这种命名规则解析节点的事件监听器，例如：onClick，onFocus
         </li>
         <li>节点上事件监听器属性的值必须是个函数</li>
         <li>尽量使用箭头函数，省得再次绑定作用域</li>

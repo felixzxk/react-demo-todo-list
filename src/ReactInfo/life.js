@@ -5,7 +5,7 @@ export default () => {
     <Fragment>
       <h1>生命周期</h1>
       <img
-        style={{ margin: 'auto', width: '80%' }}
+        style={{ margin: 'auto' }}
         src={require('./life.jpg')}
       />
       <ol style={{ fontSize: '32px', lineHeight: '2em' }}>
