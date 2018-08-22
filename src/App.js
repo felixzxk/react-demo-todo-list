@@ -6,9 +6,9 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import Main, { JSX, Life, DataFlow, Events, Demo } from './ReactInfo';
+import Main, { JSX, Life, DataFlow, Events, Demo, Comp } from './ReactInfo';
 import RR from './Router';
-import Flux, {ReduxInfo} from './Flux';
+import Flux, {ReduxInfo, Dvajs} from './Flux';
 import WP from './Webpack';
 import NoMatch from './NoMatch';
 import styles from './styles.less';
@@ -22,7 +22,7 @@ export default class App extends Component {
           <div className={styles.content}>
             <ul className={styles.menu}>
               <li>
-                <Link to="/react">React</Link>
+                <Link to="/">React</Link>
                 <ul>
                   <li>
                     <Link to="/react-demo">demo</Link>
@@ -39,6 +39,9 @@ export default class App extends Component {
                   <li>
                     <Link to="/react-dataflow">数据流</Link>
                   </li>
+                  <li>
+                    <Link to="/react-comp">组件</Link>
+                  </li>
                 </ul>
               </li>
               <li>
@@ -48,7 +51,7 @@ export default class App extends Component {
                     <Link to="/flux-redux">redux</Link>
                   </li>
                   <li>
-                    <Link to="/flux-davjs">dvajs</Link>
+                    <Link to="/flux-dvajs">dvajs</Link>
                   </li>
                 </ul>
               </li>
@@ -73,18 +76,19 @@ export default class App extends Component {
             <div className={styles.mainBox}>
               <div className={styles.mainBoxWrap}>
                 <Switch>
-                  <Route path="/react" component={Main} />
-                  <Route path="/react-jsx" component={JSX} />
-                  <Route path="/react-life" component={Life} />
-                  <Route path="/react-dataflow" component={DataFlow} />
-                  <Route path="/react-events" component={Events} />
-                  <Route path="/react-demo" component={Demo} />
-                  <Route path="/react-router" component={RR} />
-                  <Route path="/flux" component={Flux} />
-                  <Route path="/flux-redux" component={ReduxInfo} />
-                  <Route path="/webpack" component={WP} />
+                  <Route exact path="/" component={Main} />
+                  <Route exact path="/react-jsx" component={JSX} />
+                  <Route exact path="/react-life" component={Life} />
+                  <Route exact path="/react-dataflow" component={DataFlow} />
+                  <Route exact path="/react-events" component={Events} />
+                  <Route exact path="/react-demo" component={Demo} />
+                  <Route exact path="/react-router" component={RR} />
+                  <Route exact path="/react-comp" component={Comp} />
+                  <Route exact path="/flux" component={Flux} />
+                  <Route exact path="/flux-redux" component={ReduxInfo} />
+                  <Route exact path="/flux-dvajs" component={Dvajs} />
+                  <Route exact path="/webpack" component={WP} />
                   <Route component={NoMatch} />
-                  <Redirect from="/" to="/react" />
                 </Switch>
               </div>
             </div>

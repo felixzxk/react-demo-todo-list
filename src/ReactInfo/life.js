@@ -43,6 +43,14 @@ export default () => {
             <li>组件即将移出文本流：componentWillUnmount(): viod</li>
           </ol>
         </li>
+        <li>
+          虚拟dom
+          <ol>
+            <li>内存里的数据操作， 比真实dom快</li>
+            <li>本质是对dom节点的描述对象</li>
+            <li>diff算法，比较新旧两棵dom数据的差异，并对真实dom树做最小程度的修改</li>
+          </ol>
+        </li>
       </ol>
     </Fragment>
   );

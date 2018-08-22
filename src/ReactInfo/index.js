@@ -5,8 +5,9 @@ import Life from './life';
 import DataFlow from './dataflow';
 import Events from './events';
 import Demo from './react-demo';
+import Comp from './component';
 
-export { JSX, Life, DataFlow, Events, Demo };
+export { JSX, Life, DataFlow, Events, Demo, Comp };
 
 export default props => {
   return (
